@@ -1,6 +1,5 @@
 ﻿using Gma.System.MouseKeyHook;
 using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace ExcelPackageCreator

@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExcelPackageCreator
 {
@@ -30,11 +17,33 @@ namespace ExcelPackageCreator
             _keyHook.Subscribe();
 
             Closing += OnWindowClosing;
+
+            ReadConfig();
         }
 
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
             _keyHook.Unsubscribe();
+        }
+
+        private void ReadConfig()
+        {
+            monitoredPathTextBox.Text = ZipFileCreator.MonitoredPath;
+            savePathTextBox.Text = ZipFileCreator.SavePath;
+        }
+
+        private void monitoredPathSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ZipFileCreator.StoreNewMonitoredPath(monitoredPathTextBox.Text);
+
+            ReadConfig();
+        }
+
+        private void savePathSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ZipFileCreator.StoreNewSavePath(savePathTextBox.Text);
+
+            ReadConfig();
         }
     }
 }
